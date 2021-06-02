@@ -9,6 +9,9 @@ class Cpf {
     }
 
     get validate() {
+        if (!this.cleanCpf) return `The cpf isn't valid.`;
+        if (typeof this.cleanCpf !== 'string') return `The cpf isn't valid.`;
+        if (this.cleanCpf.length !== 11) return `The cpf isn't valid.`;
         this.cleanCPF();
         this.getDigit();
         this.cpfArr.push(this.digit);
