@@ -12,6 +12,7 @@ class Cpf {
         if (!this.cleanCpf) return `The cpf isn't valid.`;
         if (typeof this.cleanCpf !== 'string') return `The cpf isn't valid.`;
         if (this.cleanCpf.length !== 11) return `The cpf isn't valid.`;
+        if (this.isASequence()) return `The cpf isn't valid.`;
         this.cleanCPF();
         this.getDigit();
         this.cpfArr.push(this.digit);
@@ -20,6 +21,10 @@ class Cpf {
 
         const validation = this.cpfArr.join('') === this.cleanCpf;
         return validation ? `The cpf is valid!` :  `The cpf isn't valid.`;
+    }
+
+    isASequence () {
+        return this.cleanCpf.charAt(0).repeat(11) === this.cleanCpf;
     }
 
     cleanCPF () {
@@ -43,4 +48,6 @@ class Cpf {
 }
 
 const cpf1 = new Cpf('705.484.450-52');
+const cpf2 = new Cpf('111.111.111-11');
 console.log(cpf1.validate);
+console.log(cpf2.validate);
